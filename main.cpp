@@ -1,54 +1,42 @@
-/*В текстовом файле хранится база отдела кадров предприятия. На предприятии не более 100 сотрудников.
-Каждая строка файла содержит запись об одном сотруднике. Первая запись в файле –
-фактическое число сотрудников. Формат записи:
-	фамилия (не более 20 позиций),
-	год рождения (4 позиции),
-	оклад (не более 8 позиций).
-Написать программу, которая позволяла бы выводить на экран сведения о сотрудниках,
-добавлять и удалять сотрудников из БД, корректировать данные о сотрудниках.
-*/
-
 #include <iostream>
 #include <iomanip>
 #include <fstream>
 #include <cstring>
-#include "man.h"
+#include "planet.h"
 
 using namespace std;
 
 #define l_name 100
 
-int read_dbase(char *filename, Man *arr, int &n);
+int read_dbase(char *filename, Planet *arr, int &n);
 
-void print_dbase(Man *arr, int n);
+void print_dbase(Planet *arr, int n);
 
-int write_dbase(char *filename, Man *arr, int n);
+int write_dbase(char *filename, Planet *arr, int n);
 
 
-int add(Man *arr, int &n);
+int add(Planet *arr, int &n);
 
-int edit(Man *arr, int n);
+int edit(Planet *arr, int n);
 
-int remove(Man *arr, int &n);
+int remove(Planet *arr, int &n);
 
-int find(Man *arr, int n, char *name);
+void sort_db(Planet *arr, int n);
 
-int find(Man *arr, int n, int birth_year);
+// int find(Planet *arr, int n, char *name);
 
-int find(Man *arr, int n, float pay);
+// int find(Planet *arr, int n, int birth_year);
+
+// int find(Planet *arr, int n, float pay);
 
 int menu();
 
-int menu_f();
-
-void find_man(Man *arr, int n);
-
-
 int main() {
     const int N = 100;
-    Man arr[N];
+    Planet arr[N];
     char *filename = "dbase.txt";
     int n;
+
     //чтение БД в ОП
     if (read_dbase(filename, arr, n)) {
         cout << "Ошибка чтения БД" << endl;
@@ -64,16 +52,16 @@ int main() {
                 remove(arr, n);
                 break;
             case 3:
-                find_man(arr, n);
-                break;
-            case 4:
                 edit(arr, n);
                 break;
-            case 5:
+            case 4:
                 print_dbase(arr, n);
                 break;
-            case 6:
+            case 5:
                 write_dbase(filename, arr, n);
+                break;
+            case 6:
+                sort_db(arr, n);
                 break;
             case 7:
                 return 0;
@@ -88,10 +76,11 @@ int main() {
 
 int menu() {
     cout << " ============== ГЛАВНОЕ МЕНЮ ========================\n";
-    cout << "l - добавление сотрудника\t 4 - корректировка сведений" << endl;
-    cout << "2 - удаление coтpyдникa\t\t 5 - вывод базы на экран" << endl;
-    cout << "3 - поиск сотрудника\t\t 6 - вывод базы в файл" << endl;
-    cout << "\t\t\t\t 7 - выход" << endl;
+    cout << "l - добавление планеты\t 4 - вывод базы в файл" << endl;
+    cout << "2 - удаление планеты\t\t 5 - вывод базы на экран" << endl;
+    cout << "3 - корректировка сведений\t\t6 - сортировка" << endl;
+    cout << "7 - выход" << endl;
+
     cout << "Для выбора операции введите цифру от 1 до 7" << endl;
     int resp;
     cin >> resp;
@@ -100,57 +89,8 @@ int menu() {
     return resp;
 }
 
-int menu_f() {
-    cout << "\n----------------- ПОИСК -----------------\n";
-    cout << "1 - поиск по фамилии	 2 - по году рождения\n"
-         << "3 - по окладу		 4 - конец поиска\n ";
-    cout << "Для выбора операции введите число от 1 до 4\n";
-    int resp;
-    cin >> resp;
-    cin.clear();
-    cin.ignore(10, '\n');
-    return resp;
-}
-
-// Поиск
-void find_man(Man *arr, int n) {
-    char buf[l_name];
-    int birth_year;
-    float pay;
-
-    while (true) {
-        switch (menu_f()) {
-            case 1:
-                cout << "Введите фамилию сотрудника\n";
-                cin >> buf;
-                if (find(arr, n, buf) < 0)
-                    cout << "Сотрудника с фамилией " << buf << " в списке нет\n";
-                break;
-            case 2:
-                cout << "Введите год рождения" << endl;
-                cin >> birth_year;
-                if (find(arr, n, birth_year) < 0)
-                    cout << "В списке нет сотрудников, родившихся до "
-                         << birth_year << " года\n";
-                break;
-            case 3:
-                cout << "Введите оклад" << endl;
-                cin >> pay;
-                if (find(arr, n, pay) < 0)
-                    cout << "В списке нет сотрудников с окладом, большим "
-                         << pay << " руб.\n";
-                break;
-            case 4:
-                return;
-            default:
-                cout << "Неверный ввод\n";
-        }
-
-    }
-}
-
 // Чтение базы из файла
-int read_dbase(char *filename, Man *arr, int &n) {
+int read_dbase(char *filename, Planet *arr, int &n) {
     ifstream fin(filename, ios::in);
     if (!fin) {
         cout << "Heт файла " << filename << endl;
@@ -163,13 +103,15 @@ int read_dbase(char *filename, Man *arr, int &n) {
     }
 
     char name[l_name];
-    int birth_year;
-    float pay;
+    long diameter;
+    int lifetime;
+    int kSatellites;
     for (int i = 0; i < n; i++) {
-        fin >> name >> birth_year >> pay;
+        fin >> name >> diameter >> lifetime >> kSatellites;
         arr[i].SetName(name);
-        arr[i].SetBirthYear(birth_year);
-        arr[i].SetPay(pay);
+        arr[i].SetDiameter(diameter);
+        arr[i].SetLifetime(lifetime);
+        arr[i].SetKSatellites(kSatellites);
     }
 
     fin.close();
@@ -177,7 +119,7 @@ int read_dbase(char *filename, Man *arr, int &n) {
 }
 
 // Вывод базы в файл
-int write_dbase(char *filename, Man *arr, int n) {
+int write_dbase(char *filename, Planet *arr, int n) {
     ofstream fout(filename, ios::out);
     if (!fout) {
         cout << "Ошибка открытия файла" << endl;
@@ -185,22 +127,23 @@ int write_dbase(char *filename, Man *arr, int n) {
     }
     fout << n;
     for (int i = 0; i < n; i++)
-        fout << arr[i].GetName() << ' ' << arr[i].GetBirthYear() << ' ' << arr[i].GetPay() << endl;
+        fout << arr[i].GetName() << ' ' << arr[i].GetDiameter() << ' ' << arr[i].GetLifetime() <<
+             ' ' << arr[i].GetKSatellites()<< endl;
 
     fout.close();
     return 0;
 }
 
 // Вывод базы на экран
-void print_dbase(Man *arr, int n) {
+void print_dbase(Planet *arr, int n) {
     cout << " База Данных " << endl;
     for (int i = 0; i < n; i++)
-        cout << setw(3) << i + 1 << ". " << arr[i].GetName() << setw(20 - strlen(arr[i].GetName()) + 6)
-             << arr[i].GetBirthYear() << setw(10) << arr[i].GetPay() << endl;
+        cout << i + 1 << ' ' << arr[i].GetName() << ' ' << arr[i].GetDiameter() << ' ' << arr[i].GetLifetime() <<
+                             ' ' << arr[i].GetKSatellites()<< endl;
 }
 
-// Поиск сотрудника в списке по фамилии
-int find(Man *arr, int n, char *name)   // возвращает индес элемента с данными о
+/* // Поиск сотрудника в списке по фамилии
+int find(Planet *arr, int n, char *name)   // возвращает индес элемента с данными о
                                         // сотруднике в БД,реализованной в виде массива
 {
     int ind = -1;
@@ -214,7 +157,7 @@ int find(Man *arr, int n, char *name)   // возвращает индес эл�
 }
 
 // Поиск и вывод более старших по возрасту сотрудников
-int find(Man *arr, int n, int birth_year) {
+int find(Planet *arr, int n, int birth_year) {
     int ind = -1;
     for (int i = 0; i < n; i++)
         if (arr[i].GetBirthYear() < birth_year) {
@@ -226,7 +169,7 @@ int find(Man *arr, int n, int birth_year) {
 }
 
 // Поиск и вывод сотрудников с окладом, большим чем "pay"
-int find(Man *arr, int n, float pay) {
+int find(Planet *arr, int n, float pay) {
     int ind = -1;
     for (int i = 0; i < n; i++)
         if (arr[i].GetPay() > pay) {
@@ -235,9 +178,9 @@ int find(Man *arr, int n, float pay) {
                  << arr[i].GetBirthYear() << setw(10) << arr[i].GetPay() << endl;
         }
     return ind;
-}
+} */
 
-int add(Man *arr, int &n) {
+int add(Planet *arr, int &n) {
     cout << "Введите фамилию сотрудника" << endl;
     char name[l_name];
     cin >> name;
@@ -259,12 +202,12 @@ int add(Man *arr, int &n) {
         return 1;
     }
 
-   /* Man man(strlen(name));
-    man.SetPay(pay);
-    man.SetBirthYear(year);
-    man.SetName(name);
+   /* Planet Planet(strlen(name));
+    Planet.SetPay(pay);
+    Planet.SetBirthYear(year);
+    Planet.SetName(name);
 
-    arr[n] = man;
+    arr[n] = Planet;
     */
 
     arr[n].SetPay(pay);
@@ -275,7 +218,7 @@ int add(Man *arr, int &n) {
     return 0;
 }
 
-int edit(Man *arr, int n) {
+int edit(Planet *arr, int n) {
     cout << "Какой номер вы хотите изменить?" << endl;
     int tN;
     cin >> tN;
@@ -313,7 +256,7 @@ int edit(Man *arr, int n) {
     return 0;
 }
 
-int remove(Man *arr, int &n) {
+int remove(Planet *arr, int &n) {
     cout << "Какой номер вы хотите удалить?" << endl;
     int tN;
     cin >> tN;
@@ -330,6 +273,20 @@ int remove(Man *arr, int &n) {
     n--;
     return 0;
 }
+
+void sort_db(Planet *arr, int n) {
+    for(int i = 0; i < n; i++) {
+        for(int j = i + 1; j < n; j++) {
+            if (arr[i] < arr[j]) {
+                Planet t = arr[i];
+                arr[i] = arr[j];
+                arr[j] = t;
+            }
+        }
+    }
+}
+
+
 
 
 

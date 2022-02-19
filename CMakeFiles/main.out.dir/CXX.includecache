@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/stepan/Documents/lab/main.cpp
+iostream
+-
+iomanip
+-
+fstream
+-
+cstring
+-
+planet.h
+/home/stepan/Documents/lab/planet.h
+
+/home/stepan/Documents/lab/planet.cpp
+planet.h
+/home/stepan/Documents/lab/planet.h
+cstring
+-
+
+/home/stepan/Documents/lab/planet.h
+fstream
+-
+

@@ -169,32 +169,32 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.out.dir/build.make CMakeFiles/main.out.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-man.o: man.cpp.o
+planet.o: planet.cpp.o
 
-.PHONY : man.o
+.PHONY : planet.o
 
 # target to build an object file
-man.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.out.dir/build.make CMakeFiles/main.out.dir/man.cpp.o
-.PHONY : man.cpp.o
+planet.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.out.dir/build.make CMakeFiles/main.out.dir/planet.cpp.o
+.PHONY : planet.cpp.o
 
-man.i: man.cpp.i
+planet.i: planet.cpp.i
 
-.PHONY : man.i
+.PHONY : planet.i
 
 # target to preprocess a source file
-man.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.out.dir/build.make CMakeFiles/main.out.dir/man.cpp.i
-.PHONY : man.cpp.i
+planet.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.out.dir/build.make CMakeFiles/main.out.dir/planet.cpp.i
+.PHONY : planet.cpp.i
 
-man.s: man.cpp.s
+planet.s: planet.cpp.s
 
-.PHONY : man.s
+.PHONY : planet.s
 
 # target to generate assembly for a file
-man.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.out.dir/build.make CMakeFiles/main.out.dir/man.cpp.s
-.PHONY : man.cpp.s
+planet.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.out.dir/build.make CMakeFiles/main.out.dir/planet.cpp.s
+.PHONY : planet.cpp.s
 
 # Help Target
 help:
@@ -208,9 +208,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... man.o"
-	@echo "... man.i"
-	@echo "... man.s"
+	@echo "... planet.o"
+	@echo "... planet.i"
+	@echo "... planet.s"
 .PHONY : help
 
 
