@@ -20,7 +20,9 @@ float Man::GetPay() {
 }
 
 void Man::SetName(char * tempName) {
-    strcat(pName, tempName);
+    int n = strlen(tempName);
+    strncpy(pName, tempName, n);
+    pName[n] = '\0';
 }
 
 void Man::SetBirthYear(int tempBirth) {
