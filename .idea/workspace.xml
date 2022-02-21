@@ -11,13 +11,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2560b16f-7d02-4af9-9e72-b2f8bd0c7e67" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/Progress/1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/Progress/count.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/main.out.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/main.out.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dbase.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dbase.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/planet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/planet.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/planet.h" beforeDir="false" afterPath="$PROJECT_DIR$/planet.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +58,7 @@
       <updated>1645048550290</updated>
       <workItem from="1645048553503" duration="5344000" />
       <workItem from="1645291412954" duration="9307000" />
-      <workItem from="1645471431548" duration="704000" />
+      <workItem from="1645471431548" duration="2115000" />
     </task>
     <servers />
   </component>

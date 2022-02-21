@@ -212,13 +212,13 @@ int add(Planet *arr, int &n) {
         return 1;
     }
 
-   /* Planet Planet(strlen(name));
-    Planet.SetPay(pay);
-    Planet.SetBirthYear(year);
-    Planet.SetName(name);
+    /* Planet Planet(strlen(name));
+     Planet.SetPay(pay);
+     Planet.SetBirthYear(year);
+     Planet.SetName(name);
 
-    arr[n] = Planet;
-    */
+     arr[n] = Planet;
+     */
 
     arr[n].SetName(name);
     arr[n].SetDiameter(diameter);
@@ -293,8 +293,8 @@ int remove(Planet *arr, int &n) {
 }
 
 void sort_db(Planet *arr, int n) {
-    for(int i = 0; i < n; i++) {
-        for(int j = i + 1; j < n; j++) {
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
             if (arr[i] < arr[j]) {
                 Planet t = arr[i];
                 arr[i] = arr[j];

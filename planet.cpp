@@ -9,7 +9,8 @@ Planet::Planet(int l_name) {
 Planet::Planet(const Planet &pl) : diameter(pl.diameter),
                                    lifetime(pl.lifetime),
                                    kSatellites(pl.kSatellites) {
-
+    name = new char[strlen(pl.name) + 1];
+    this->SetName(pl.name);
 }
 
 Planet::~Planet() {
