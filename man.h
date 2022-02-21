@@ -15,6 +15,8 @@ public:
     void SetBirthYear(int tempBirth);
     void SetPay(float tempPay);
 
+    Man& operator=(const Man& man);
+
     ~Man();
 
 private:

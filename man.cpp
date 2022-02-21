@@ -33,6 +33,17 @@ void Man::SetPay(float tempPay) {
     pay = tempPay;
 }
 
+Man& Man::operator=(const Man& man) {
+    birth_year = man.birth_year;
+    pay = man.pay;
+
+    if (!pName) delete pName;
+    pName = new char[strlen(man.pName) + 1];
+    this->SetName(man.pName);
+
+    return *this;
+}
+
 Man::~Man() {
     delete[] pName;
 }

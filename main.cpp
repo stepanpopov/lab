@@ -259,17 +259,16 @@ int add(Man *arr, int &n) {
         return 1;
     }
 
-   /* Man man(strlen(name));
+    Man man(strlen(name));
     man.SetPay(pay);
     man.SetBirthYear(year);
     man.SetName(name);
 
     arr[n] = man;
-    */
 
-    arr[n].SetPay(pay);
+    /*arr[n].SetPay(pay);
     arr[n].SetBirthYear(year);
-    arr[n].SetName(name);
+    arr[n].SetName(name);*/
 
     n++;
     return 0;
@@ -279,11 +278,11 @@ int edit(Man *arr, int n) {
     cout << "Какой номер вы хотите изменить?" << endl;
     int tN;
     cin >> tN;
-    if (tN < 0 || tN >= n) {
+    if (tN < 1 || tN > n) {
         cout << "Неправильный номер" << endl;
         return 1;
     }
-    tN++;
+    tN--;
 
     cout << "Введите фамилию сотрудника" << endl;
     char name[l_name];
@@ -317,11 +316,11 @@ int remove(Man *arr, int &n) {
     cout << "Какой номер вы хотите удалить?" << endl;
     int tN;
     cin >> tN;
-    if (tN < 0 || tN >= n) {
+    if (tN < 1 || tN > n) {
         cout << "Неправильный номер" << endl;
         return 1;
     }
-    tN++;
+    tN--;
 
     for (int i = tN; i < n - 1; ++i) {
         arr[i] = arr[i + 1];
