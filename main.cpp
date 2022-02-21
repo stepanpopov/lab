@@ -2,7 +2,7 @@
 #include <iomanip>
 #include <fstream>
 #include <cstring>
-#include "planet.h"
+#include "article.h"
 
 using namespace std;
 

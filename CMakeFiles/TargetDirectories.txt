@@ -1,3 +1,0 @@
-/home/stepan/Documents/lab/CMakeFiles/rebuild_cache.dir
-/home/stepan/Documents/lab/CMakeFiles/edit_cache.dir
-/home/stepan/Documents/lab/CMakeFiles/main.out.dir

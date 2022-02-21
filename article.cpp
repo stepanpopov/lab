@@ -1,57 +1,57 @@
-#include "planet.h"
+#include "article.h"
 #include <cstring>
 
 
-Planet::Planet(int l_name) {
+Article::Article(int l_name) {
     name = new char[l_name + 1];
 }
 
-Planet::Planet(const Planet &pl) : diameter(pl.diameter),
+Article::Article(const Article &pl) : diameter(pl.diameter),
                                    lifetime(pl.lifetime),
                                    kSatellites(pl.kSatellites) {
     name = new char[strlen(pl.name) + 1];
     this->SetName(pl.name);
 }
 
-Planet::~Planet() {
+Article::~Article() {
     delete[] name;
 }
 
-char *Planet::GetName() {
+char *Article::GetName() {
     return name;
 }
 
-long Planet::GetDiameter() {
+long Article::GetDiameter() {
     return diameter;
 }
 
-int Planet::GetLifetime() {
+int Article::GetLifetime() {
     return lifetime;
 }
 
-int Planet::GetKSatellites() {
+int Article::GetKSatellites() {
     return kSatellites;
 }
 
-void Planet::SetName(char *tempName) {
+void Article::SetName(char *tempName) {
     int n = strlen(tempName);
     strncpy(name, tempName, n);
     name[n] = '\0';
 }
 
-void Planet::SetDiameter(int tempD) {
+void Article::SetDiameter(int tempD) {
     diameter = tempD;
 }
 
-void Planet::SetLifetime(float tempL) {
+void Article::SetLifetime(float tempL) {
     lifetime = tempL;
 }
 
-void Planet::SetKSatellites(float tempKS) {
+void Article::SetKSatellites(float tempKS) {
     kSatellites = tempKS;
 }
 
-Planet &Planet::operator=(const Planet &pl) {
+Article &Article::operator=(const Article &pl) {
     diameter = pl.diameter;
     lifetime = pl.lifetime;
     kSatellites = pl.kSatellites;
@@ -63,20 +63,20 @@ Planet &Planet::operator=(const Planet &pl) {
     return *this;
 }
 
-bool Planet::operator<(Planet &pl) {
+bool Article::operator<(Article &pl) {
     return (this->diameter < pl.diameter);
 }
 
-bool Planet::operator==(Planet &pl) {
+bool Article::operator==(Article &pl) {
     return (this->diameter == pl.diameter);
 }
 
-std::ostream &operator<<(std::ostream &out, Planet &pl) {
+std::ostream &operator<<(std::ostream &out, Article &pl) {
     out << pl.name << ' ' << pl.diameter << ' ' << pl.lifetime << ' ' << pl.kSatellites << '\n';
     return out;
 }
 
-std::istream &operator>>(std::istream &in, Planet &pl) {
+std::istream &operator>>(std::istream &in, Article &pl) {
     in >> pl.name >> pl.diameter >> pl.lifetime >> pl.kSatellites;
     return in;
 }
