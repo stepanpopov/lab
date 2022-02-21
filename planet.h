@@ -2,29 +2,42 @@
 #define LAB2_1_MAN_H
 
 // #define l_name  20
-#include <fstream>
+// #include <fstream>
+#include <iostream>
 
 class Planet {
 public:
-    Man(int l_name = 30);
+    Planet(int l_name = 30);
 
-    char * GetName();
+    Planet(const Planet &pl);
+
+    char *GetName();
+
     long GetDiameter();
+
     int GetLifetime();
+
     int GetKSatellites();
 
-    void SetName(char * tempN);
+    void SetName(char *tempN);
+
     void SetDiameter(int tempD);
+
     void SetLifetime(float tempL);
+
     void SetKSatellites(float tempKS);
 
-    bool operator <(Planet &pl);
-    bool operator ==(Planet &pl);
+    Planet &operator=(const Planet &pl);
 
-    friend ofstream& operator<<(ofstream& out, Planet &pl);
-    friend ifstream& operator>>(ifstream& in, Planet &pl);
+    bool operator<(Planet &pl);
 
-    ~Man();
+    bool operator==(Planet &pl);
+
+    friend std::ostream &operator<<(std::ostream &out, Planet &pl);
+
+    friend std::istream &operator>>(std::istream &in, Planet &pl);
+
+    ~Planet();
 
 private:
     char *name;

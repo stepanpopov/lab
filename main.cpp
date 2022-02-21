@@ -55,10 +55,10 @@ int main() {
                 edit(arr, n);
                 break;
             case 4:
-                print_dbase(arr, n);
+                write_dbase(filename, arr, n);
                 break;
             case 5:
-                write_dbase(filename, arr, n);
+                print_dbase(arr, n);
                 break;
             case 6:
                 sort_db(arr, n);
@@ -76,9 +76,9 @@ int main() {
 
 int menu() {
     cout << " ============== ГЛАВНОЕ МЕНЮ ========================\n";
-    cout << "l - добавление планеты\t 4 - вывод базы в файл" << endl;
-    cout << "2 - удаление планеты\t\t 5 - вывод базы на экран" << endl;
-    cout << "3 - корректировка сведений\t\t6 - сортировка" << endl;
+    cout << "l - добавление планеты\t    4 - вывод базы в файл" << endl;
+    cout << "2 - удаление планеты\t    5 - вывод базы на экран" << endl;
+    cout << "3 - корректировка сведений  6 - сортировка" << endl;
     cout << "7 - выход" << endl;
 
     cout << "Для выбора операции введите цифру от 1 до 7" << endl;
@@ -125,10 +125,11 @@ int write_dbase(char *filename, Planet *arr, int n) {
         cout << "Ошибка открытия файла" << endl;
         return 1;
     }
-    fout << n;
+    fout << n << endl;
     for (int i = 0; i < n; i++)
-        fout << arr[i].GetName() << ' ' << arr[i].GetDiameter() << ' ' << arr[i].GetLifetime() <<
-             ' ' << arr[i].GetKSatellites()<< endl;
+        // fout << arr[i].GetName() << ' ' << arr[i].GetDiameter() << ' ' << arr[i].GetLifetime() <<
+        //     ' ' << arr[i].GetKSatellites()<< endl;
+        fout << arr[i];
 
     fout.close();
     return 0;
@@ -136,10 +137,12 @@ int write_dbase(char *filename, Planet *arr, int n) {
 
 // Вывод базы на экран
 void print_dbase(Planet *arr, int n) {
-    cout << " База Данных " << endl;
+    cout << endl << " База Данных " << endl;
     for (int i = 0; i < n; i++)
-        cout << i + 1 << ' ' << arr[i].GetName() << ' ' << arr[i].GetDiameter() << ' ' << arr[i].GetLifetime() <<
-                             ' ' << arr[i].GetKSatellites()<< endl;
+        // cout << i + 1 << ' ' << arr[i].GetName() << ' ' << arr[i].GetDiameter() << ' ' << arr[i].GetLifetime() <<
+        //                     ' ' << arr[i].GetKSatellites()<< endl;
+        cout << i + 1 << ' ' << arr[i];
+    cout << endl;
 }
 
 /* // Поиск сотрудника в списке по фамилии
@@ -181,23 +184,30 @@ int find(Planet *arr, int n, float pay) {
 } */
 
 int add(Planet *arr, int &n) {
-    cout << "Введите фамилию сотрудника" << endl;
+    cout << "Введите название планеты" << endl;
     char name[l_name];
     cin >> name;
     if (cin.fail()) {
         return 1;
     }
 
-    cout << "Введите год его рождения" << endl;
-    int year;
-    cin >> year;
+    cout << "Введите ее диаметр" << endl;
+    long diameter;
+    cin >> diameter;
     if (cin.fail()) {
         return 1;
     }
 
-    cout << "Введите его заработную плату" << endl;
-    float pay;
-    cin >> pay;
+    cout << "Введите продолжительность жизни" << endl;
+    int lifetime;
+    cin >> lifetime;
+    if (cin.fail()) {
+        return 1;
+    }
+
+    cout << "Введите количество спутников" << endl;
+    int kSatellites;
+    cin >> kSatellites;
     if (cin.fail()) {
         return 1;
     }
@@ -210,9 +220,10 @@ int add(Planet *arr, int &n) {
     arr[n] = Planet;
     */
 
-    arr[n].SetPay(pay);
-    arr[n].SetBirthYear(year);
     arr[n].SetName(name);
+    arr[n].SetDiameter(diameter);
+    arr[n].SetLifetime(lifetime);
+    arr[n].SetKSatellites(kSatellites);
 
     n++;
     return 0;
@@ -222,37 +233,44 @@ int edit(Planet *arr, int n) {
     cout << "Какой номер вы хотите изменить?" << endl;
     int tN;
     cin >> tN;
-    if (tN < 0 || tN >= n) {
+    if (tN < 1 || tN > n) {
         cout << "Неправильный номер" << endl;
         return 1;
     }
-    tN++;
+    tN--;
 
-    cout << "Введите фамилию сотрудника" << endl;
+    cout << "Введите название планеты" << endl;
     char name[l_name];
     cin >> name;
-
     if (cin.fail()) {
         return 1;
     }
 
-    cout << "Введите год его рождения" << endl;
-    int year;
-    cin >> year;
+    cout << "Введите ее диаметр" << endl;
+    long diameter;
+    cin >> diameter;
     if (cin.fail()) {
         return 1;
     }
 
-    cout << "Введите его заработную плату" << endl;
-    float pay;
-    cin >> pay;
+    cout << "Введите продолжительность жизни" << endl;
+    int lifetime;
+    cin >> lifetime;
+    if (cin.fail()) {
+        return 1;
+    }
+
+    cout << "Введите количество спутников" << endl;
+    int kSatellites;
+    cin >> kSatellites;
     if (cin.fail()) {
         return 1;
     }
 
     arr[tN].SetName(name);
-    arr[tN].SetBirthYear(year);
-    arr[tN].SetPay(pay);
+    arr[tN].SetDiameter(diameter);
+    arr[tN].SetLifetime(lifetime);
+    arr[tN].SetKSatellites(kSatellites);
     return 0;
 }
 
@@ -260,11 +278,11 @@ int remove(Planet *arr, int &n) {
     cout << "Какой номер вы хотите удалить?" << endl;
     int tN;
     cin >> tN;
-    if (tN < 0 || tN >= n) {
+    if (tN < 0 || tN > n) {
         cout << "Неправильный номер" << endl;
         return 1;
     }
-    tN++;
+    tN--;
 
     for (int i = tN; i < n - 1; ++i) {
         arr[i] = arr[i + 1];
