@@ -6,11 +6,10 @@ Article::Article(int l_name) {
     name = new char[l_name + 1];
 }
 
-Article::Article(const Article &pl) : diameter(pl.diameter),
-                                   lifetime(pl.lifetime),
-                                   kSatellites(pl.kSatellites) {
-    name = new char[strlen(pl.name) + 1];
-    this->SetName(pl.name);
+Article::Article(const Article &ar) : page(ar.page),
+                                      words(ar.words) {
+    name = new char[strlen(ar.name) + 1];
+    this->SetName(ar.name);
 }
 
 Article::~Article() {
@@ -21,16 +20,12 @@ char *Article::GetName() {
     return name;
 }
 
-long Article::GetDiameter() {
-    return diameter;
+long Article::GetPage() {
+    return page;
 }
 
-int Article::GetLifetime() {
-    return lifetime;
-}
-
-int Article::GetKSatellites() {
-    return kSatellites;
+int Article::GetWords() {
+    return words;
 }
 
 void Article::SetName(char *tempName) {
@@ -39,45 +34,40 @@ void Article::SetName(char *tempName) {
     name[n] = '\0';
 }
 
-void Article::SetDiameter(int tempD) {
-    diameter = tempD;
+void Article::SetPage(int tempP) {
+    page = tempP;
 }
 
-void Article::SetLifetime(float tempL) {
-    lifetime = tempL;
+void Article::SetWords(int tempW) {
+    words = tempW;
 }
 
-void Article::SetKSatellites(float tempKS) {
-    kSatellites = tempKS;
-}
-
-Article &Article::operator=(const Article &pl) {
-    diameter = pl.diameter;
-    lifetime = pl.lifetime;
-    kSatellites = pl.kSatellites;
+Article &Article::operator=(const Article &ar) {
+    page = ar.page;
+    words = ar.words;
 
     if (!name) delete name;
-    name = new char[strlen(pl.name) + 1];
-    this->SetName(pl.name);
+    name = new char[strlen(ar.name) + 1];
+    this->SetName(ar.name);
 
     return *this;
 }
 
-bool Article::operator<(Article &pl) {
-    return (this->diameter < pl.diameter);
+bool Article::operator<(Article &ar) {
+    return (this->words < ar.words);
 }
 
-bool Article::operator==(Article &pl) {
-    return (this->diameter == pl.diameter);
+bool Article::operator==(Article &ar) {
+    return (this->words == ar.words);
 }
 
-std::ostream &operator<<(std::ostream &out, Article &pl) {
-    out << pl.name << ' ' << pl.diameter << ' ' << pl.lifetime << ' ' << pl.kSatellites << '\n';
+std::ostream &operator<<(std::ostream &out, Article &ar) {
+    out << ar.name << ' ' << ar.words << ' ' << ar.page << '\n';
     return out;
 }
 
-std::istream &operator>>(std::istream &in, Article &pl) {
-    in >> pl.name >> pl.diameter >> pl.lifetime >> pl.kSatellites;
+std::istream &operator>>(std::istream &in, Article &ar) {
+    in >> ar.name >> ar.words >> ar.page;
     return in;
 }
 

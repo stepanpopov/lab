@@ -1,5 +1,5 @@
-#ifndef LAB2_1_MAN_H
-#define LAB2_1_MAN_H
+#ifndef LAB2_1_ARTICLE_H
+#define LAB2_1_ARTICLE_H
 
 #include <iostream>
 
@@ -7,41 +7,37 @@ class Article {
 public:
     Article(int l_name = 30);
 
-    Article(const Article &pl);
+    Article(const Article &ar);
 
     char *GetName();
 
-    long GetDiameter();
+    long GetPage();
 
-    int GetLifetime();
-
-    int GetKSatellites();
+    int GetWords();
 
     void SetName(char *tempN);
 
-    void SetDiameter(int tempD);
+    void SetPage(int tempP);
 
-    void SetLifetime(float tempL);
+    void SetWords(int tempW);
 
-    void SetKSatellites(float tempKS);
+    Article &operator=(const Article &ar);
 
-    Article &operator=(const Article &pl);
+    bool operator<(Article &ar);
 
-    bool operator<(Article &pl);
+    bool operator==(Article &ar);
 
-    bool operator==(Article &pl);
+    friend std::ostream &operator<<(std::ostream &out, Article &ar);
 
-    friend std::ostream &operator<<(std::ostream &out, Article &pl);
-
-    friend std::istream &operator>>(std::istream &in, Article &pl);
+    friend std::istream &operator>>(std::istream &in, Article &ar);
 
     ~Article();
 
 private:
     char *name;
+    int words;
     int page;
-
 };
 
 
-#endif //LAB2_1_MAN_H
+#endif // LAB2_1_ARTICLE_H

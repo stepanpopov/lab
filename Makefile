@@ -142,6 +142,33 @@ main.out/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.out.dir/build.make CMakeFiles/main.out.dir/build
 .PHONY : main.out/fast
 
+article.o: article.cpp.o
+
+.PHONY : article.o
+
+# target to build an object file
+article.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.out.dir/build.make CMakeFiles/main.out.dir/article.cpp.o
+.PHONY : article.cpp.o
+
+article.i: article.cpp.i
+
+.PHONY : article.i
+
+# target to preprocess a source file
+article.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.out.dir/build.make CMakeFiles/main.out.dir/article.cpp.i
+.PHONY : article.cpp.i
+
+article.s: article.cpp.s
+
+.PHONY : article.s
+
+# target to generate assembly for a file
+article.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.out.dir/build.make CMakeFiles/main.out.dir/article.cpp.s
+.PHONY : article.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -169,33 +196,6 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.out.dir/build.make CMakeFiles/main.out.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-planet.o: planet.cpp.o
-
-.PHONY : planet.o
-
-# target to build an object file
-planet.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.out.dir/build.make CMakeFiles/main.out.dir/planet.cpp.o
-.PHONY : planet.cpp.o
-
-planet.i: planet.cpp.i
-
-.PHONY : planet.i
-
-# target to preprocess a source file
-planet.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.out.dir/build.make CMakeFiles/main.out.dir/planet.cpp.i
-.PHONY : planet.cpp.i
-
-planet.s: planet.cpp.s
-
-.PHONY : planet.s
-
-# target to generate assembly for a file
-planet.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.out.dir/build.make CMakeFiles/main.out.dir/planet.cpp.s
-.PHONY : planet.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -205,12 +205,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... main.out"
+	@echo "... article.o"
+	@echo "... article.i"
+	@echo "... article.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... planet.o"
-	@echo "... planet.i"
-	@echo "... planet.s"
 .PHONY : help
 
 
