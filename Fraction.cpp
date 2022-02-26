@@ -22,7 +22,7 @@ Fraction::Fraction(const char *s) {
     Conv();
 }
 
-void Fraction::_FractionStringToIntArr(const char *s, int *arr) {
+void Fraction::_FractionStringToIntArr(const char *s, int *arr) {  // добавить ввод без дробной части
     int len = strlen(s);
     char temp[len];
 
@@ -81,14 +81,17 @@ Fraction Fraction::operator+(const Fraction &fr) const {
     return sumFr;
 }
 
+Fraction& Fraction::operator+=(const Fraction &fr) {
+    *this = *this + fr;
+    return *this;
+}
+
 Fraction Fraction::operator+(const int x) const {
-    Fraction xFr(x, 1);
-    return (*this + xFr);
+    return (*this + Fraction(x, 1));
 }
 
 Fraction Fraction::operator+(const double x) const {
-    Fraction xFr(x);
-    return (*this + xFr);
+    return (*this + Fraction(x));
 }
 
 Fraction operator+(const int x, const Fraction &fr) {
@@ -148,4 +151,12 @@ std::ostream &operator<<(std::ostream &out, const Fraction &fr) {
 
     return out;
 }
+
+std::istream &operator>>(std::istream &in, Fraction &fr) {  // !!!!!
+    char s[BUFFER_INIT];
+    in >> s;
+    fr = Fraction(s);
+    return in;
+}
+
 
