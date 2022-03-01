@@ -30,7 +30,7 @@ public:
     friend
     Fraction operator+(const double x, const Fraction &fr);
 
-    // friend double operator+=(const double x, const Fraction &fr); // ????
+    // friend double operator+=(const double x, const Fraction &fr);
 
     static int gcd(int a, int b);
 
@@ -48,7 +48,6 @@ private:
     int numerator;
     int denominator;
     int floor;
-    bool neg;
 };
 
 std::ostream &operator<<(std::ostream &out, const Fraction &fr);

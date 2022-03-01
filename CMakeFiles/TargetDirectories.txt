@@ -1,0 +1,3 @@
+/mnt/c/Users/stepan/Documents/lab_sem2/lab/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/stepan/Documents/lab_sem2/lab/CMakeFiles/edit_cache.dir
+/mnt/c/Users/stepan/Documents/lab_sem2/lab/CMakeFiles/main.out.dir

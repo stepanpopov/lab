@@ -10,9 +10,15 @@ Fraction::Fraction(const char *s) {
     _FractionStringToIntArr(s, temp_i);
 
     if (temp_i[2] == 0) {
-        floor = 0;
-        numerator = temp_i[0];
-        denominator = temp_i[1];
+        if (temp_i[1] == 0) {
+            floor = temp_i[0];
+            numerator = 0;
+            denominator = 1;
+        } else {
+            floor = 0;
+            numerator = temp_i[0];
+            denominator = temp_i[1];
+        }
     } else {
         floor = temp_i[0];
         numerator = temp_i[1];
@@ -23,8 +29,20 @@ Fraction::Fraction(const char *s) {
 }
 
 void Fraction::_FractionStringToIntArr(const char *s, int *arr) {  // добавить ввод без дробной части
+
     int len = strlen(s);
     char temp[len];
+
+    bool separator_found = false;
+    for (int i = 0; i < len; i++) {
+        if (s[i] == ' ' || s[i] == '/') separator_found = true;
+    }
+    if (!separator_found) {
+        arr[2] = 0;
+        arr[1] = 0;
+        arr[0] = atoi(s);
+        return;
+    }
 
     arr[2] = 0;
     for (int i = 0, j = 0, z = 0; i < len; i++) {
@@ -81,7 +99,7 @@ Fraction Fraction::operator+(const Fraction &fr) const {
     return sumFr;
 }
 
-Fraction& Fraction::operator+=(const Fraction &fr) {
+Fraction &Fraction::operator+=(const Fraction &fr) {
     *this = *this + fr;
     return *this;
 }
@@ -103,6 +121,7 @@ Fraction operator+(const double x, const Fraction &fr) {
 }
 
 void Fraction::Conv() {
+    // std::cout << "DEBUG " << numerator << " " << denominator << std::endl;
     if (denominator == 0) {  // ????
         numerator = 0;
         return;
@@ -130,6 +149,8 @@ void Fraction::Conv() {
     } else {
         floor *= neg;
     }
+
+    // std::cout << "DEBUG " << numerator << " " << denominator << std::endl;
 }
 
 int Fraction::gcd(int a, int b) {
@@ -154,7 +175,8 @@ std::ostream &operator<<(std::ostream &out, const Fraction &fr) {
 
 std::istream &operator>>(std::istream &in, Fraction &fr) {  // !!!!!
     char s[BUFFER_INIT];
-    in >> s;
+    in.getline(s, BUFFER_INIT);
+    // std::cout << "DEBUG_>> " << s << std::endl;
     fr = Fraction(s);
     return in;
 }
