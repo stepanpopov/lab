@@ -11,11 +11,12 @@ class ListNode                //узел списка
 private:
     INF d;                        //информационная часть узла
     ListNode *next;         //указатель на следующий узел списка
-    ListNode() { next = NULL; } //конструктор
+    ListNode() {
+        next = NULL;
+    }
     friend FRIEND;
 };
 
-//Шаблонный класс MyStack на основе односвязного списка.
 template<class INF>
 class MyStack {
     typedef class ListNode<INF, MyStack<INF> > Node;
