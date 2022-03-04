@@ -1,11 +1,9 @@
-#include "MyStack.cpp" // !!!!
 #include <iostream>
-#include "MyStack.h"
+#include "stack.h"
 
 using namespace std;
 
-template <class DATA>
-void Multipliers(DATA n, MyStack<DATA> &stack) {
+void Multipliers(int n, MyStack<int> &stack) {
     int n1 = n;
     for(int i = 2; i * i <= n1; i++) {
         while(n % i == 0) {

@@ -1,4 +1,3 @@
-#include "MyStack.h"
 
 template<class INF>
 MyStack<INF>::MyStack() : top(NULL) {
