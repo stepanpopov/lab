@@ -15,7 +15,6 @@ public:
         for(int i = 1; i < maxsize; i++) {
             pdata[i] = NULL;
         }
-
     }
 
     MyVector(MyVector &v);
@@ -45,7 +44,20 @@ protected:
     int size;
     char **pdata;
 private:
-    void resize();
+    void resize() {
+        if (maxsize < size) {
+            maxsize *= 1.5;
+            char ** newdata = new * char [maxsize];
+            for (int i = 0; i < size; ++i) {
+                newdata[i] = pdata[i];
+            }
+            for (int i = size; i < maxsize; ++i) {
+                newdata[i] = NULL;
+            }
+            delete[] pdata;
+            pdata = newdata;
+        }
+    }
 };
 
 #endif
