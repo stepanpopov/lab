@@ -21,12 +21,14 @@ class MyStack {
     typedef class ListNode<INF, MyStack<INF> > Node;
     Node *top;
 public:
-    MyStack();              // конструктор
-    ~MyStack();             // освободить динамическую память
-    bool empty();           // стек пустой?
-    bool push(INF n);       // добавить узел в вершину стека
-    bool pop();             // удалить узел из вершины стека
-    INF *top_inf();         //считать информацию из вершины стека
+    MyStack();                                  // конструктор
+    MyStack(MyStack<INF> &st);
+    MyStack<INF> &operator=(MyStack<INF> &st);
+    ~MyStack();                                 // освободить динамическую память
+    bool empty();                               // стек пустой?
+    bool push(INF n);                           // добавить узел в вершину стека
+    bool pop();                                 // удалить узел из вершины стека
+    INF *top_inf();                             //считать информацию из вершины стека
 };
 
 #include "stack.cpp"

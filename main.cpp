@@ -24,10 +24,14 @@ void PrintStack(MyStack<T> &stack) {
 
 int main() {
     MyStack<int> st;
-    MyStack<int> stRev;
+    //MyStack<int> stRev;
     Multipliers(3960, st);
 
-    cout << "3960 = ";
+    MyStack<int> stRev(st);
+    PrintStack(stRev);
+    PrintStack(st);
+
+    /*cout << "3960 = ";
     while(!st.empty()) {
         int top = *(st.top_inf());
         cout << top << " ";
@@ -37,7 +41,7 @@ int main() {
     cout << endl;
 
     cout << "3960 = ";
-    PrintStack(stRev);
+    PrintStack(stRev);*/
 
 
     return 0;
