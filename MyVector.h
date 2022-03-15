@@ -21,13 +21,27 @@ public:
 
     ~MyVector();
 
-    void add_element(char *el);
+    void add_element(char *el) {
+        size++;
+        if (size > maxsize) {
+            resize();
+        }
+        pdata[size - 1] = el;
+    }
 
     bool delete_element(int i);
 
-    char *operator[](int i);
+    char *operator[](int i) {
+        if (i < 0 || i >= size) {
+            return NULL;
+        } else {
+            return pdata[i];
+        }
+    }
 
-    void sort();
+    void sort() {
+
+    }
 
     int Size() { return size; }
 
