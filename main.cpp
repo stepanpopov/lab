@@ -23,13 +23,16 @@ void PrintStack(MyStack<T> &stack) {
 }
 
 int main() {
-    MyStack<int> st;
-    //MyStack<int> stRev;
-    Multipliers(3960, st);
+    MyStack<int> st1;
+    Multipliers(3960, st1);
 
-    MyStack<int> stRev(st);
-    PrintStack(stRev);
-    PrintStack(st);
+    MyStack<int> st2(st1);
+    MyStack<int> st3;
+    st3 = st1;
+
+    PrintStack(st1);
+    PrintStack(st2);
+    PrintStack(st3);
 
     /*cout << "3960 = ";
     while(!st.empty()) {

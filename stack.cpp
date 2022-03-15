@@ -5,11 +5,12 @@ MyStack<INF>::MyStack() : top(NULL) {
 
 template<class INF>
 MyStack<INF>::MyStack(MyStack <INF> &st) {
-    *this = st;
+    (*this) = st;
 }
 
 template<class INF>
 MyStack <INF> &MyStack<INF>::operator=(MyStack <INF> &st) {
+    this->top = NULL;
     Node *nodeP = st.top;
     int size = 0;
     while (nodeP != NULL) {
