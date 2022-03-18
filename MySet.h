@@ -30,7 +30,18 @@ public:
     void delete_element(char *el);
 
     bool is_element(char *el);
+
+private:
+    int binarySearch(char *el);
 };
+
+ostream &operator<<(ostream &out, MySet &s);
+
+MySet operator+(MySet &s1, MySet &s2);
+
+MySet operator-(MySet &s1, MySet &s2);
+
+MySet operator*(MySet &s1, MySet &s2);
 
 #endif
 

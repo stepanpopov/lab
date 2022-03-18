@@ -1,13 +1,12 @@
 #include <iostream>
 #include "MyVector.h"
-#include "MySet.h"
-#include "MyVector.cpp"
-#include "MySet.cpp"
+// #include "MySet.h"
+
 
 using namespace std;
 
 int main() {
-    MyVector v("Hello!");
+    /*MyVector v("Hello!");
     v.add_element("Привет!");
     v.add_element("Привет!");
     v.add_element("Привет!");
@@ -62,7 +61,7 @@ int main() {
     if (s1 == s3)
         cout << "Множество s1=s3\n";
     else
-        cout << "Множество s1!=s3\n";
+        cout << "Множество s1!=s3\n";*/
     return 0;
 }
 
