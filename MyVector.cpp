@@ -11,7 +11,7 @@ MyVector::MyVector(char *el, int maxsz) : maxsize(maxsz), size(0) {
     }
 }
 
-MyVector::MyVector(MyVector &v) : pdata(NULL) {
+MyVector::MyVector(const MyVector &v) : pdata(NULL) {
     *this = v;
 }
 
@@ -72,7 +72,7 @@ int MyVector::find(char *el) {
     return -1;
 }
 
-MyVector &MyVector::operator=(MyVector &v) {
+MyVector &MyVector::operator=(const MyVector &v) {
     size = v.size;
     maxsize = v.maxsize;
 

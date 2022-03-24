@@ -12,7 +12,7 @@ class MyVector {
 public:
     MyVector(char *el = NULL, int maxsz = MAX_SIZE);
 
-    MyVector(MyVector &v);
+    MyVector(const MyVector &v);
 
     ~MyVector();
 
@@ -30,7 +30,7 @@ public:
 
     int find(char *el);
 
-    MyVector &operator=(MyVector &v);
+    MyVector &operator=(const MyVector &v);
 
     friend ostream &operator<<(ostream &out, MyVector &v);
 
