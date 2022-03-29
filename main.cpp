@@ -1,6 +1,6 @@
 #include <iostream>
 #include "MyVector.h"
-#include "MySet.h"
+// #include "MySet.h"
 
 using namespace std;
 
@@ -20,8 +20,23 @@ int main() {
 
     cout << s << endl;*/
 
+    MyVector<int> v(10);
+    v.add_element(5);
+    v.add_element(40);
+    v.add_element(1);
+    v.add_element(4);
+    v.add_element(99);
 
-    MyVector v("Hello!");
+    v.sort();
+
+    v.delete_element(2);
+    v.delete_element(0);
+    v.delete_element(0);
+    v.delete_element(0);
+
+    cout << v << endl;
+
+    /*MyVector v("Hello!");
     v.add_element("Привет!");
     v.add_element("Привет!");
     v.add_element("Привет!");
@@ -83,7 +98,7 @@ int main() {
     if (s1 == s3)
         cout << "Множество s1=s3\n";
     else
-        cout << "Множество s1!=s3\n";
+        cout << "Множество s1!=s3\n";*/
     return 0;
 }
 

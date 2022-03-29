@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2560b16f-7d02-4af9-9e72-b2f8bd0c7e67" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MySet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/MySet.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MySet.h" beforeDir="false" afterPath="$PROJECT_DIR$/MySet.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyVector.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/MyVector.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyVector.h" beforeDir="false" afterPath="$PROJECT_DIR$/MyVector.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
@@ -38,13 +36,6 @@
     <property name="cidr.known.project.marker" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
-  </component>
-  <component name="RunManager">
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

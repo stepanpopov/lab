@@ -8,19 +8,22 @@ using namespace std;
 
 const int MAX_SIZE = 5;
 
+template<class T>
 class MyVector {
 public:
-    MyVector(char *el = NULL, int maxsz = MAX_SIZE);
+    MyVector(T el, int maxsz = MAX_SIZE);
 
-    MyVector(const MyVector &v);
+    // конструктор по умолчанию
+
+    MyVector(const MyVector<T> &v);
 
     ~MyVector();
 
-    void add_element(char *el);
+    void add_element(T el);
 
     bool delete_element(int i);
 
-    char *operator[](int i);
+    T operator[](int i);
 
     void sort();
 
@@ -28,21 +31,30 @@ public:
 
     int Maxsize() { return maxsize; }
 
-    int find(char *el);
+    int find(T el);
 
-    MyVector &operator=(const MyVector &v);
+    MyVector<T> &operator=(const MyVector<T> &v);
 
-    friend ostream &operator<<(ostream &out, MyVector &v);
+    friend
+    ostream &operator <<(ostream &out, MyVector<T> &v) {
+        out << v.size << " " << v.maxsize << endl;
+        for (int i = 0; i < v.size; ++i) {
+            out << v.pdata[i] << endl;
+        }
+        return out;
+    }
 
 protected:
     int maxsize;
     int size;
-    char **pdata;
+    T *pdata;
 private:
     void resize();
 };
 
-ostream &operator<<(ostream &out, MyVector &v);
+// template<class T> ostream &operator<<(ostream &out, MyVector<T> &v);
+
+#include "MyVector.cpp"
 
 #endif
 

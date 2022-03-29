@@ -1,25 +1,27 @@
-#include "MyVector.h"
+// #include "MyVector.h"
 
-MyVector::MyVector(char *el, int maxsz) : maxsize(maxsz), size(0) {
-    pdata = new char *[maxsize];
-    if (el != NULL) {
-        size++;
-    }
+template<class T>
+MyVector<T>::MyVector(T el, int maxsz) : maxsize(maxsz), size(1) {
+    pdata = new T[maxsize];
+
     pdata[0] = el;
     for (int i = 1; i < maxsize; ++i) {
-        pdata[i] = NULL;
+        pdata[i] = 0;                       // !!!!!!
     }
 }
 
-MyVector::MyVector(const MyVector &v) : pdata(NULL) {
+template<class T>
+MyVector<T>::MyVector(const MyVector <T> &v) : pdata(0) {
     *this = v;
 }
 
-MyVector::~MyVector() {
+template<class T>
+MyVector<T>::~MyVector() {
     delete[] pdata;
 }
 
-void MyVector::add_element(char *el) {
+template<class T>
+void MyVector<T>::add_element(T el) {
     size++;
     if (size > maxsize) {
         resize();
@@ -27,7 +29,8 @@ void MyVector::add_element(char *el) {
     pdata[size - 1] = el;
 }
 
-bool MyVector::delete_element(int i) {
+template<class T>
+bool MyVector<T>::delete_element(int i) {
     if (i < 0 || i >= size) {
         return false;
     }
@@ -42,16 +45,34 @@ bool MyVector::delete_element(int i) {
     return true;
 }
 
-char *MyVector::operator[](int i) {
+template<class T>
+T MyVector<T>::operator[](int i) {
     if (i < 0 || i >= size) {
-        return NULL;
+        return 0;                           // !!!!
     } else {
         return pdata[i];
     }
 }
 
-void MyVector::sort() {
+template<class T>
+void MyVector<T>::sort() {
+    T temp;
+
+    for (int i = 0; i < size; ++i) {
+        for (int j = i + 1; j < size; ++j) {
+            if (pdata[i] > pdata[j]) {
+                temp = pdata[i];
+                pdata[i] = pdata[j];
+                pdata[j] = temp;
+            }
+        }
+    }
+}
+
+template<>
+void MyVector<char *>::sort() {
     char *temp;
+
     for (int i = 0; i < size; ++i) {
         for (int j = i + 1; j < size; ++j) {
             if (strcmp(pdata[i], pdata[j]) > 0) {
@@ -63,7 +84,8 @@ void MyVector::sort() {
     }
 }
 
-int MyVector::find(char *el) {
+template<class T>
+int MyVector<T>::find(T el) {
     for (int i = 0; i < size; ++i) {
         if (strcmp(el, pdata[i]) == 0) {
             return i;
@@ -72,29 +94,23 @@ int MyVector::find(char *el) {
     return -1;
 }
 
-MyVector &MyVector::operator=(const MyVector &v) {
+template<class T>
+MyVector <T> &MyVector<T>::operator=(const MyVector <T> &v) {
     size = v.size;
     maxsize = v.maxsize;
 
     if (pdata != NULL) {
         delete[]pdata;
     }
-    pdata = new char *[maxsize];
+    pdata = new T[maxsize];
     for (int i = 0; i < maxsize; ++i) {
         pdata[i] = v.pdata[i];
     }
     return *this;
 }
 
-ostream &operator<<(ostream &out, MyVector &v) {
-    out << v.size << " " << v.maxsize << endl;
-    for (int i = 0; i < v.size; ++i) {
-        out << v.pdata[i] << endl;
-    }
-    return out;
-}
-
-void MyVector::resize() {
+template<class T>
+void MyVector<T>::resize() {
     if (maxsize < size) {
         if (maxsize < 2) {
             maxsize = MAX_SIZE;
@@ -107,9 +123,9 @@ void MyVector::resize() {
         return;
     }
 
-    char **newdata = new char *[maxsize];
+    T *newdata = new T[maxsize];
     for (int i = 0; i < maxsize; ++i) {
-        newdata[i] = NULL;
+        newdata[i] = 0;                  // !!!!
     }
     for (int i = 0; i < size; ++i) {
         newdata[i] = pdata[i];
@@ -117,3 +133,12 @@ void MyVector::resize() {
     delete[] pdata;
     pdata = newdata;
 }
+
+/*template<class T>
+ostream &operator<<(ostream &out, MyVector<T> &v) {
+    out << v.size << " " << v.maxsize << endl;
+    for (int i = 0; i < v.size; ++i) {
+        out << v.pdata[i] << endl;
+    }
+    return out;
+}*/
