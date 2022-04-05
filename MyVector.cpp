@@ -1,5 +1,3 @@
-// #include "MyVector.h"
-
 template<class T>
 MyVector<T>::MyVector(T el, int maxsz) : maxsize(maxsz), size(1) {
     pdata = new T[maxsize];

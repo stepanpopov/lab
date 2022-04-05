@@ -4,37 +4,78 @@
 #include <iostream>
 #include "MyVector.h"
 
-
 using namespace std;
 
-class MySet : public MyVector {
+template<class T>
+class MySet : public MyVector<T> {
 public:
-    MySet(char *el = NULL) : MyVector(el) {};
+    MySet(T el = NULL) : MyVector<T>(el) {};
 
     // MySet(const MySet &s) : MyVector(s) {};   ??????????
     // MySet &operator=(const MySet &s) {};      ???????????
-
     // friend ostream &operator<<(ostream &out, MySet &s);
 
-    friend MySet operator+(MySet &s1, MySet &s2);
+    friend MySet<T> operator+(MySet<T> &s1, MySet<T> &s2) {
+        MySet<T> sRes;
 
-    friend MySet operator-(MySet &s1, MySet &s2);
+        bool isElement[s2.size];
+        for (int i = 0; i < s2.size; ++i) {
+            isElement[i] = false;
+        }
 
-    friend MySet operator*(MySet &s1, MySet &s2);
+        for (int i = 0; i < s1.size; ++i) {
+            sRes.MyVector<T>::add_element(s1[i]);
+            int indS2 = s2.binarySearch(s1[i]);
+            if (indS2 != -1) isElement[indS2] = true;
+        }
 
-    bool operator==(MySet &s);
+        for (int i = 0; i < s2.size; ++i) {
+            if (!isElement[i]) {
+                sRes.MyVector<T>::add_element(s2[i]);
+            }
+        }
+        sRes.MyVector<T>::sort();
 
-    MySet &operator+=(MySet &s);
+        return sRes;
+    }
 
-    MySet &operator-=(MySet &s);
+    friend MySet<T> operator-(MySet<T> &s1, MySet<T> &s2) {
+        MySet<T> sRes;
 
-    MySet &operator*=(MySet &s);
+        for (int i = 0; i < s1.size; ++i) {
+            if (s2.binarySearch(s1[i]) == -1) {
+                sRes.MyVector<T>::add_element(s1[i]);
+            }
+        }
 
-    void add_element(char *el);
+        return sRes;
+    }
 
-    void delete_element(char *el);
+    friend MySet<T> operator*(MySet<T> &s1, MySet<T> &s2) {
+        MySet<T> sRes;
 
-    bool is_element(char *el);
+        for (int i = 0; i < s1.size; ++i) {
+            if (s2.binarySearch(s1[i]) != -1) {
+                sRes.MyVector<T>::add_element(s1[i]);
+            }
+        }
+
+        return sRes;
+    }
+
+    bool operator==(MySet<T> &s);
+
+    MySet<T> &operator+=(MySet<T> &s);
+
+    MySet<T> &operator-=(MySet<T> &s);
+
+    MySet<T> &operator*=(MySet<T> &s);
+
+    void add_element(T el);
+
+    void delete_element(T el);
+
+    bool is_element(T el);
 
 protected:
     using MyVector::maxsize;
@@ -42,16 +83,62 @@ protected:
     using MyVector::pdata;
 
 private:
-    int binarySearch(char *el);
+    int binarySearch(T el);
 };
 
+/*MySet operator+(MySet &s1, MySet &s2) {
+    MySet sRes;
+
+    bool isElement[s2.size];
+    for (int i = 0; i < s2.size; ++i) {
+        isElement[i] = false;
+    }
+
+    for (int i = 0; i < s1.size; ++i) {
+        sRes.MyVector::add_element(s1[i]);
+        int indS2 = s2.binarySearch(s1[i]);
+        if (indS2 != -1) isElement[indS2] = true;
+    }
+
+    for (int i = 0; i < s2.size; ++i) {
+        if (!isElement[i]) {
+            sRes.MyVector::add_element(s2[i]);
+        }
+    }
+    sRes.MyVector::sort();
+
+    return sRes;
+}
+
+MySet operator-(MySet &s1, MySet &s2) {
+    MySet sRes;
+
+    for (int i = 0; i < s1.size; ++i) {
+        if (s2.binarySearch(s1[i]) == -1) {
+            sRes.MyVector::add_element(s1[i]);
+        }
+    }
+
+    return sRes;
+}
+
+MySet operator*(MySet &s1, MySet &s2) {
+    MySet sRes;
+
+    for (int i = 0; i < s1.size; ++i) {
+        if (s2.binarySearch(s1[i]) != -1) {
+            sRes.MyVector::add_element(s1[i]);
+        }
+    }
+
+    return sRes;
+}*/
 // ostream &operator<<(ostream &out, MySet &s);
-
-MySet operator+(MySet &s1, MySet &s2);
-
+/*MySet operator+(MySet &s1, MySet &s2);
 MySet operator-(MySet &s1, MySet &s2);
+MySet operator*(MySet &s1, MySet &s2);*/
 
-MySet operator*(MySet &s1, MySet &s2);
+#include "MySet.cpp"
 
 #endif
 
