@@ -24,27 +24,28 @@ void PrintStack(MyStack<T> &stack) {
 
 int main() {
     MyStack<int> st1;
+    MyStack<int> stRev;
     Multipliers(3960, st1);
 
-    MyStack<int> st2(st1);
+    /*MyStack<int> st2(st1);
     MyStack<int> st3;
     st3 = st1;
 
     PrintStack(st1);
     PrintStack(st2);
-    PrintStack(st3);
+    PrintStack(st3);*/
 
-    /*cout << "3960 = ";
-    while(!st.empty()) {
-        int top = *(st.top_inf());
+    cout << "3960 = ";
+    while(!st1.empty()) {
+        int top = *(st1.top_inf());
         cout << top << " ";
         stRev.push(top);
-        st.pop();
+        st1.pop();
     }
     cout << endl;
 
     cout << "3960 = ";
-    PrintStack(stRev);*/
+    PrintStack(stRev);
 
 
     return 0;
