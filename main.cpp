@@ -5,38 +5,7 @@
 using namespace std;
 
 int main() {
-    /*MySet s1("ccc");
-    s1.add_element("aaa");
-    s1.add_element("zzz");
-
-    MySet s2("bbb");
-    s2.add_element("ddd");
-    s2.add_element("eee");
-    s2.add_element("fff");
-    s2.add_element("aaa");
-
-    MySet s("eee");
-    s += s1;
-
-    cout << s << endl;*/
-
-    MyVector<int> v(10);
-    v.add_element(5);
-    v.add_element(40);
-    v.add_element(1);
-    v.add_element(4);
-    v.add_element(99);
-
-    v.sort();
-
-    v.delete_element(2);
-    v.delete_element(0);
-    v.delete_element(0);
-    v.delete_element(0);
-
-    cout << v << endl;
-
-    /*MyVector v("Hello!");
+    MyVector<char *> v("Hello!");
     v.add_element("Привет!");
     v.add_element("Привет!");
     v.add_element("Привет!");
@@ -47,13 +16,13 @@ int main() {
     v.add_element("Привет!");
     v.add_element("Привет!");
     cout << "Вектор v: " << v << endl;
-    MyVector v1 = v;
+    MyVector<char *> v1 = v;
     cout << "Вектор v1: " << v1 << endl;
     for (int i = 0; i < MAX_SIZE; i++)
         v1.delete_element(0);
     cout << "Вектор v1: " << v1 << endl;
 
-    MySet s("Yes"), s1, s2;
+    MySet<char*> s("Yes"), s1, s2;
     s.add_element("Привет!");
     s.add_element("No");
     char *str = "Hello!";
@@ -85,7 +54,7 @@ int main() {
     cout << "Множество s1: " << s1 << endl;
     cout << "Множество s: " << s << endl;
 
-    MySet s3 = s2;
+    MySet<char *> s3 = s2;
     cout << "Множество s3=s2: " << s3 << endl;
     if (s3 == s2)
         cout << "Множество s3=s2\n";
@@ -98,7 +67,7 @@ int main() {
     if (s1 == s3)
         cout << "Множество s1=s3\n";
     else
-        cout << "Множество s1!=s3\n";*/
+        cout << "Множество s1!=s3\n";
     return 0;
 }
 

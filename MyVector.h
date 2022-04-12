@@ -13,6 +13,8 @@ class MyVector {
 public:
     MyVector(T el, int maxsz = MAX_SIZE);
 
+    MyVector();
+
     // конструктор по умолчанию
 
     MyVector(const MyVector<T> &v);

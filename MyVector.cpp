@@ -9,6 +9,15 @@ MyVector<T>::MyVector(T el, int maxsz) : maxsize(maxsz), size(1) {
 }
 
 template<class T>
+MyVector<T>::MyVector() : maxsize(MAX_SIZE), size(0) {
+    pdata = new T[maxsize];
+
+    for (int i = 0; i < maxsize; ++i) {
+        pdata[i] = 0;                       // !!!!!!
+    }
+}
+
+template<class T>
 MyVector<T>::MyVector(const MyVector <T> &v) : pdata(0) {
     *this = v;
 }

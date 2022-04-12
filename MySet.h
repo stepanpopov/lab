@@ -9,9 +9,11 @@ using namespace std;
 template<class T>
 class MySet : public MyVector<T> {
 public:
-    MySet(T el = NULL) : MyVector<T>(el) {};
+    MySet(T el) : MyVector<T>(el) {};
 
-    // MySet(const MySet &s) : MyVector(s) {};   ??????????
+    MySet() : MyVector<T>() {};
+
+    MySet(const MySet &s) : MyVector(s) {};
     // MySet &operator=(const MySet &s) {};      ???????????
     // friend ostream &operator<<(ostream &out, MySet &s);
 
@@ -78,9 +80,9 @@ public:
     bool is_element(T el);
 
 protected:
-    using MyVector::maxsize;
-    using MyVector::size;
-    using MyVector::pdata;
+    using MyVector<T>::maxsize;
+    using MyVector<T>::size;
+    using MyVector<T>::pdata;
 
 private:
     int binarySearch(T el);

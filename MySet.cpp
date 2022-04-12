@@ -12,7 +12,6 @@ bool MySet<T>::operator==(MySet<T> &s) {
             return false;
         }
     }
-
     return true;
 }
 
@@ -37,8 +36,8 @@ MySet<T> &MySet<T>::operator*=(MySet &s) {
 template<class T>
 void MySet<T>::add_element(T el) {
     if (binarySearch(el) == -1) {
-        MyVector::add_element(el);
-        MyVector::sort();
+        MyVector<T>::add_element(el);
+        MyVector<T>::sort();
     }
 }
 
@@ -46,7 +45,7 @@ template<class T>
 void MySet<T>::delete_element(T el) {
     int ind = binarySearch(el);
     if (ind != -1) {
-        MyVector::delete_element(ind);
+        MyVector<T>::delete_element(ind);
     }
 }
 
