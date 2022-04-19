@@ -2,6 +2,7 @@
 #define LAB_PILYNOMIAL_H
 
 #include "term.h"
+#include "MyVector.h"
 
 class polynomial {
 public:
@@ -11,7 +12,8 @@ public:
 
 
 private:
-
+    int degree;
+    MyVector<term> poly;
 
 };
 

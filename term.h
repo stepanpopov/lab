@@ -3,6 +3,7 @@
 
 #include <istream>
 #include <ostream>
+#include "polynomial.h"
 
 class term {
 public:
@@ -16,15 +17,18 @@ public:
     friend
     std::istream &operator>>(std::istream &in, const term &t);
 
-    // friend polynomial;
+    friend polynomial;
 
 private:
+    void _string_to_term(char *s);
+
+
     int pow;
     int num;
 };
 
 std::ostream &operator<<(std::ostream &out, const term &t);
 
-std::istream &operator>>(std::istream &in, const term &t);
+std::istream &operator>>(std::istream &in, term &t);
 
 #endif //LAB_TERM_H
