@@ -1,8 +1,11 @@
-#ifndef LAB_PILYNOMIAL_H
-#define LAB_PILYNOMIAL_H
+#ifndef LAB_POLYNOMIAL_H
+#define LAB_POLYNOMIAL_H
 
 #include "term.h"
-#include "MyVector.h"
+#include <ostream>
+#include "vector.h"
+
+// class term;
 
 class polynomial {
 public:
@@ -10,13 +13,23 @@ public:
     polynomial(int x);
     polynomial(term t);
 
+    polynomial &operator=(const &polynomial p);
+
+    polynomial &operator+=(const &polynomial p);
+    polynomial &operator*=(const &polynomial p);
+
+    polynomial operator*(const &polynomial p) const;
+    polynomial operator+(const &polynomial p) const;
+
+    friend
+    std::ostream &operator<<(std::ostream &out, const polynomial &p);
 
 private:
     int degree;
-    MyVector<term> poly;
+    vector<term> poly;
 
 };
 
+std::ostream &operator<<(std::ostream &out, const polynomial &p);
 
-
-#endif //LAB_PILYNOMIAL_H
+#endif //LAB_POLYNOMIAL_H

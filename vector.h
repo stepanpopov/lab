@@ -1,5 +1,5 @@
-#ifndef MYVECTOR_H
-#define MYVECTOR_H
+#ifndef VECTOR_H
+#define VECTOR_H
 
 #include <iostream>
 #include <string.h>
@@ -9,15 +9,15 @@ using namespace std;
 const int MAX_SIZE = 5;
 
 template<class T>
-class MyVector {
+class vector {
 public:
-    MyVector(T el, int maxsz = MAX_SIZE);
+    vector(T el, int maxsz = MAX_SIZE);
 
-    MyVector();
+    vector();
 
-    MyVector(const MyVector<T> &v);
+    vector(const vector<T> &v);
 
-    ~MyVector();
+    ~vector();
 
     void add_element(T el);
 
@@ -27,17 +27,17 @@ public:
 
     void sort();
 
-    int Size() { return size; }
+    int get_size() { return size; }
 
-    int Maxsize() { return maxsize; }
+    int get_maxsize() { return maxsize; }
 
     int find(T el);
 
-    MyVector<T> &operator=(const MyVector<T> &v);
+    vector<T> &operator=(const vector<T> &v);
 
     friend
-    ostream &operator <<(ostream &out, MyVector<T> &v) {
-        out << v.size << " " << v.maxsize << endl;
+    ostream &operator <<(ostream &out, vector<T> &v) {
+        out << "size:" << v.size << " maxsize:" << v.maxsize << endl;
         for (int i = 0; i < v.size; ++i) {
             out << v.pdata[i] << endl;
         }
@@ -52,7 +52,7 @@ private:
     void resize();
 };
 
-#include "MyVector.cpp"
+#include "vector.cpp"
 
 #endif
 

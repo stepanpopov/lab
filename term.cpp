@@ -4,40 +4,9 @@
 
 using namespace std;
 
-static const int MAX_INPUT = 40;
+static const int MAX_INPUT = 100;
 
-term::term(int num, int pow): pow(pow), num(num) {
-}
-
-void term::_string_to_term(char *s) {
-    char *beg = s;
-
-    bool neg = false;
-    bool deg_sep = false;
-
-    stringstream num_ss;
-    stringstream pow_ss;
-
-    while(*beg) {
-        if (*beg == '-') {
-            neg = true;
-        }
-        if (*beg == '^') {
-            deg_sep = true;
-        }
-
-        if (isdigit(*beg) && !deg_sep) {
-            num_ss << *beg;
-        }
-
-        if (isdigit(*beg) && deg_sep) {
-            pow_ss << *beg;
-        }
-
-
-
-        beg++;
-    }
+term::term(int num, int pow) : pow(pow), num(num) {
 }
 
 term term::operator+(const term &t) {
@@ -75,3 +44,53 @@ std::istream &operator>>(std::istream &in, term &t) {
     return in;
 }
 
+void term::_string_to_term(char *s) {
+    char *beg = s;
+
+    bool neg = false;
+    bool deg_sep = false;
+
+    stringstream num_ss("");
+    stringstream pow_ss("");
+
+    this->num = 0;
+    this->pow = 0;
+    while (*beg) {
+        if (*beg == '-') {
+            neg = true;
+        }
+        if (*beg == '^') {
+            deg_sep = true;
+        }
+        if (isdigit(*beg) && !deg_sep) {
+            num_ss << *beg;
+        }
+        if (isdigit(*beg) && deg_sep) {
+            pow_ss << *beg;
+        }
+
+        if (*(beg + 1) == 0 || *(beg + 1) == '+') {
+            int num_temp = 1;
+            if (num_ss.str() != "") num_ss >> num_temp;
+            // num_ss.clear();
+            // num_ss.str("");
+            num_ss = stringstream("");
+            if (neg) {
+                num_temp *= -1;
+            }
+            this->num += num_temp;
+
+            int pow_temp = 1;
+            if (pow_ss.str() != "") pow_ss >> pow_temp;
+            // pow_ss.clear();
+            // pow_ss.str("");
+            pow_ss = stringstream("");
+
+            this->pow = pow_temp;
+
+            neg = false;
+            deg_sep = false;
+        }
+        beg++;
+    }
+}

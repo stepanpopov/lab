@@ -1,5 +1,5 @@
 template<class T>
-MyVector<T>::MyVector(T el, int maxsz) : maxsize(maxsz), size(1) {
+vector<T>::vector(T el, int maxsz) : maxsize(maxsz), size(1) {
     pdata = new T[maxsize];
 
     pdata[0] = el;
@@ -9,7 +9,7 @@ MyVector<T>::MyVector(T el, int maxsz) : maxsize(maxsz), size(1) {
 }
 
 template<class T>
-MyVector<T>::MyVector() : maxsize(MAX_SIZE), size(0) {
+vector<T>::vector() : maxsize(MAX_SIZE), size(0) {
     pdata = new T[maxsize];
 
     for (int i = 0; i < maxsize; ++i) {
@@ -18,17 +18,17 @@ MyVector<T>::MyVector() : maxsize(MAX_SIZE), size(0) {
 }
 
 template<class T>
-MyVector<T>::MyVector(const MyVector <T> &v) : pdata(0) {
+vector<T>::vector(const vector <T> &v) : pdata(0) {
     *this = v;
 }
 
 template<class T>
-MyVector<T>::~MyVector() {
+vector<T>::~vector() {
     delete[] pdata;
 }
 
 template<class T>
-void MyVector<T>::add_element(T el) {
+void vector<T>::add_element(T el) {
     size++;
     if (size > maxsize) {
         resize();
@@ -37,7 +37,7 @@ void MyVector<T>::add_element(T el) {
 }
 
 template<class T>
-bool MyVector<T>::delete_element(int i) {
+bool vector<T>::delete_element(int i) {
     if (i < 0 || i >= size) {
         return false;
     }
@@ -53,7 +53,7 @@ bool MyVector<T>::delete_element(int i) {
 }
 
 template<class T>
-T MyVector<T>::operator[](int i) {
+T vector<T>::operator[](int i) {
     if (i < 0 || i >= size) {
         return 0;                           // !!!!
     } else {
@@ -62,7 +62,7 @@ T MyVector<T>::operator[](int i) {
 }
 
 template<class T>
-void MyVector<T>::sort() {
+void vector<T>::sort() {
     T temp;
 
     for (int i = 0; i < size; ++i) {
@@ -77,7 +77,7 @@ void MyVector<T>::sort() {
 }
 
 template<>
-void MyVector<char *>::sort() {
+void vector<char *>::sort() {
     char *temp;
 
     for (int i = 0; i < size; ++i) {
@@ -92,7 +92,7 @@ void MyVector<char *>::sort() {
 }
 
 template<class T>
-int MyVector<T>::find(T el) {
+int vector<T>::find(T el) {
     for (int i = 0; i < size; ++i) {
         if (strcmp(el, pdata[i]) == 0) {
             return i;
@@ -102,7 +102,7 @@ int MyVector<T>::find(T el) {
 }
 
 template<class T>
-MyVector <T> &MyVector<T>::operator=(const MyVector <T> &v) {
+vector <T> &vector<T>::operator=(const vector <T> &v) {
     size = v.size;
     maxsize = v.maxsize;
 
@@ -117,7 +117,7 @@ MyVector <T> &MyVector<T>::operator=(const MyVector <T> &v) {
 }
 
 template<class T>
-void MyVector<T>::resize() {
+void vector<T>::resize() {
     if (maxsize < size) {
         if (maxsize < 2) {
             maxsize = MAX_SIZE;
@@ -142,7 +142,7 @@ void MyVector<T>::resize() {
 }
 
 /*template<class T>
-ostream &operator<<(ostream &out, MyVector<T> &v) {
+ostream &operator<<(ostream &out, vector<T> &v) {
     out << v.size << " " << v.maxsize << endl;
     for (int i = 0; i < v.size; ++i) {
         out << v.pdata[i] << endl;

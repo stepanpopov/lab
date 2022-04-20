@@ -3,11 +3,21 @@
 
 #include <istream>
 #include <ostream>
-#include "polynomial.h"
+// #include "polynomial.h"
+
+class polynomial;
 
 class term {
 public:
     term(int num = 0, int pow = 0);
+
+    /*int get_pow() {
+        return pow;
+    }
+
+    int get_num() {
+        return num;
+    }*/
 
     term operator+(const term &t);
 
@@ -15,7 +25,7 @@ public:
     std::ostream &operator<<(std::ostream &out, const term &t);
 
     friend
-    std::istream &operator>>(std::istream &in, const term &t);
+    std::istream &operator>>(std::istream &in, term &t);
 
     friend polynomial;
 
