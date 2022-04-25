@@ -3,7 +3,6 @@
 
 #include <istream>
 #include <ostream>
-// #include "polynomial.h"
 
 class polynomial;
 
@@ -11,13 +10,9 @@ class term {
 public:
     term(int num = 0, int pow = 0);
 
-    /*int get_pow() {
-        return pow;
-    }
+    int get_pow() { return pow; }
 
-    int get_num() {
-        return num;
-    }*/
+    int get_num() { return num; }
 
     term operator+(const term &t);
 

@@ -4,7 +4,7 @@ vector<T>::vector(T el, int maxsz) : maxsize(maxsz), size(1) {
 
     pdata[0] = el;
     for (int i = 1; i < maxsize; ++i) {
-        pdata[i] = 0;                       // !!!!!!
+        pdata[i] = T(0);                       // !!!!!!
     }
 }
 
@@ -13,7 +13,7 @@ vector<T>::vector() : maxsize(MAX_SIZE), size(0) {
     pdata = new T[maxsize];
 
     for (int i = 0; i < maxsize; ++i) {
-        pdata[i] = 0;                       // !!!!!!
+        pdata[i] = T(0);                       // !!!!!!
     }
 }
 
@@ -53,13 +53,19 @@ bool vector<T>::delete_element(int i) {
 }
 
 template<class T>
-T vector<T>::operator[](int i) {
+T vector<T>::operator[](int i) const {
     if (i < 0 || i >= size) {
         return 0;                           // !!!!
     } else {
         return pdata[i];
     }
 }
+
+template<class T>
+T &vector<T>::operator[](int i) {
+    return pdata[i];
+}
+
 
 template<class T>
 void vector<T>::sort() {
@@ -76,7 +82,7 @@ void vector<T>::sort() {
     }
 }
 
-template<>
+/*template<>
 void vector<char *>::sort() {
     char *temp;
 
@@ -89,7 +95,7 @@ void vector<char *>::sort() {
             }
         }
     }
-}
+}*/
 
 template<class T>
 int vector<T>::find(T el) {
@@ -132,7 +138,7 @@ void vector<T>::resize() {
 
     T *newdata = new T[maxsize];
     for (int i = 0; i < maxsize; ++i) {
-        newdata[i] = 0;                  // !!!!
+        newdata[i] = T(0);                  // !!!!
     }
     for (int i = 0; i < size; ++i) {
         newdata[i] = pdata[i];

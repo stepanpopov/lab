@@ -23,20 +23,22 @@ public:
 
     bool delete_element(int i);
 
-    T operator[](int i);
+    T operator[](int i) const;
+
+    T &operator[](int i);
 
     void sort();
 
-    int get_size() { return size; }
+    int get_size() const { return size; }
 
-    int get_maxsize() { return maxsize; }
+    int get_maxsize() const { return maxsize; }
 
     int find(T el);
 
     vector<T> &operator=(const vector<T> &v);
 
     friend
-    ostream &operator <<(ostream &out, vector<T> &v) {
+    ostream &operator<<(ostream &out, vector<T> &v) {
         out << "size:" << v.size << " maxsize:" << v.maxsize << endl;
         for (int i = 0; i < v.size; ++i) {
             out << v.pdata[i] << endl;
@@ -51,6 +53,11 @@ protected:
 private:
     void resize();
 };
+
+/* TODO
+ * конструкторы вектора для создания массива по size
+ * operator[]
+ */
 
 #include "vector.cpp"
 
