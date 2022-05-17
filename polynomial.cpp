@@ -44,7 +44,7 @@ polynomial polynomial::operator*(const polynomial &p) const {
 polynomial polynomial::operator+(const polynomial &p) const {
     polynomial sum_res(p.poly[0].num + this->poly[0].num);
 
-    int max_degree = max(p.degree, this->degree);
+    int max_degree = std::max(p.degree, this->degree);
     sum_res.degree = max_degree;
     for (int i = 1; i <= max_degree; ++i) {
         int num = 0;
@@ -62,15 +62,21 @@ polynomial polynomial::operator+(const polynomial &p) const {
 std::ostream &operator<<(std::ostream &out, const polynomial &p) {
     int poly_size = p.poly.get_size();
     for (int i = poly_size - 1; i >= 0; --i) {
-        /*if (i != 0 && i != p.poly.get_size) {
-            cout << " + ";
-        }*/
+        bool flag = 0;
         if (i == 0 && p.poly[i].get_num() != 0) {
-            cout << p.poly[i] << " ";
-        } else if (p.poly[i].get_pow() != 0) {
-            cout << p.poly[i] << " ";
+            flag = 1;
+        } else if (p.poly[i].get_pow() != 0 && p.poly[i].get_num() != 0) {
+            flag = 1;
         }
+
+        if (i != poly_size - 1 && flag) {
+            out << " + ";
+        }
+        if (flag) {
+            out << p.poly[i];
+        }
+
     }
-    cout << endl;
+    // out << std::endl;
     return out;
 }

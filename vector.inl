@@ -1,7 +1,9 @@
+#pragma once
+// #include "vector.h"
+
 template<class T>
 vector<T>::vector(T el, int maxsz) : maxsize(maxsz), size(1) {
     pdata = new T[maxsize];
-
     pdata[0] = el;
     for (int i = 1; i < maxsize; ++i) {
         pdata[i] = T(0);                       // !!!!!!
@@ -11,7 +13,6 @@ vector<T>::vector(T el, int maxsz) : maxsize(maxsz), size(1) {
 template<class T>
 vector<T>::vector() : maxsize(MAX_SIZE), size(0) {
     pdata = new T[maxsize];
-
     for (int i = 0; i < maxsize; ++i) {
         pdata[i] = T(0);                       // !!!!!!
     }

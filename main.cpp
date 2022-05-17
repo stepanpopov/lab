@@ -1,9 +1,8 @@
 #include "polynomial.h"
 #include <iostream>
-#include "vector.h"
+// #include "vector.h"
 
-
-using namespace std;
+// using namespace std;
 
 int main() {
     // term t(5, 2);
@@ -14,7 +13,7 @@ int main() {
     p1 += term(1, 1);
 
 
-    cout << p << endl << p + p1;
+    std::cout << p + p1 << std::endl << p * p1 << std::endl;
 
     return 0;
 }

@@ -2,8 +2,6 @@
 #include <cctype>
 #include <sstream>
 
-using namespace std;
-
 static const int MAX_INPUT = 100;
 
 term::term(int num, int pow) : pow(pow), num(num) {
@@ -50,8 +48,8 @@ void term::_string_to_term(char *s) {
     bool neg = false;
     bool deg_sep = false;
 
-    stringstream num_ss("");
-    stringstream pow_ss("");
+    std::stringstream num_ss("");
+    std::stringstream pow_ss("");
 
     this->num = 0;
     this->pow = 0;
@@ -74,7 +72,7 @@ void term::_string_to_term(char *s) {
             if (num_ss.str() != "") num_ss >> num_temp;
             // num_ss.clear();
             // num_ss.str("");
-            num_ss = stringstream("");
+            num_ss = std::stringstream("");
             if (neg) {
                 num_temp *= -1;
             }
@@ -84,7 +82,7 @@ void term::_string_to_term(char *s) {
             if (pow_ss.str() != "") pow_ss >> pow_temp;
             // pow_ss.clear();
             // pow_ss.str("");
-            pow_ss = stringstream("");
+            pow_ss = std::stringstream("");
 
             this->pow = pow_temp;
 

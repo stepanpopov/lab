@@ -4,8 +4,6 @@
 #include <iostream>
 #include <string.h>
 
-using namespace std;
-
 const int MAX_SIZE = 5;
 
 template<class T>
@@ -38,10 +36,10 @@ public:
     vector<T> &operator=(const vector<T> &v);
 
     friend
-    ostream &operator<<(ostream &out, vector<T> &v) {
-        out << "size:" << v.size << " maxsize:" << v.maxsize << endl;
+    std::ostream &operator<<(std::ostream &out, vector<T> &v) {
+        out << "size:" << v.size << " maxsize:" << v.maxsize << std::endl;
         for (int i = 0; i < v.size; ++i) {
-            out << v.pdata[i] << endl;
+            out << v.pdata[i] << std::endl;
         }
         return out;
     }
@@ -59,7 +57,7 @@ private:
  * operator[]
  */
 
-#include "vector.cpp"
+#include "vector.inl"
 
 #endif
 
