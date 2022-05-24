@@ -13,7 +13,7 @@ public:
 
     MySet() : MyVector<T>() {};
 
-    MySet(const MySet &s) : MyVector(s) {};
+    MySet(const MySet &s) : MyVector<T>(s) {};
     // MySet &operator=(const MySet &s) {};      ???????????
     // friend ostream &operator<<(ostream &out, MySet &s);
 
