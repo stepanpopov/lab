@@ -1,6 +1,9 @@
 #include "term.h"
 #include <cctype>
 #include <sstream>
+#include <string.h>
+#include <limits>
+#include <ios>
 
 static const int MAX_INPUT = 100;
 
@@ -8,7 +11,7 @@ term::term(int num, int pow) : pow(pow), num(num) {
 }
 
 term term::operator+(const term &t) {
-    return term(t.pow, this->num + t.num);
+    return term(t.num + this->num, t.pow);
 }
 
 std::ostream &operator<<(std::ostream &out, const term &t) {
