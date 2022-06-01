@@ -1,9 +1,6 @@
 #include "term.h"
 #include <cctype>
 #include <sstream>
-#include <string.h>
-#include <limits>
-#include <ios>
 
 static const int MAX_INPUT = 100;
 
