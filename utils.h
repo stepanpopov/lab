@@ -2,32 +2,25 @@
 #define LAB_UTILS_H
 
 #include <string>
-#include <vector>
+#include "train_manager.h"
 
-#define FILENAME "file.txt"
-
-struct country_t {
-    std::string capital;
-    int men;
-    std::string continent;
-};
 
 void safe_inp(int &num);
 
 void safe_inp(std::string &s);
 
-void vec_sort(std::vector<country_t> &countries);
+void add(train_manager &trains);
 
-void add(std::vector<country_t> &countries);
+void remove(train_manager &trains);
 
-void remove(std::vector <country_t> &countries);
+void change(train_manager &trains);
 
-void print(std::vector<country_t> &countries);
+void print_by_num(train_manager &trains);
 
-void change(std::vector<country_t> &countries);
+void print_by_station(train_manager &trains);
 
-void save_to_file(std::vector<country_t> &countries, std::string file_name);
 
-void read_from_file(std::vector <country_t> &countries, std::string file_name);
+void train_num_input(int &num, train_manager &trains);
+
 
 #endif //LAB_UTILS_H

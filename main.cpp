@@ -1,15 +1,13 @@
 #include <iostream>
 #include "train_manager.h"
-#include <string>
+#include "utils.h"
 
 using namespace std;
 
-static string FILENAME = "";
+static string FILENAME = "db.txt";
 
 int main () {
     train_manager trains(FILENAME);
-
-    // print(countries);
 
     int state = -1;
     while (state != 8) {
@@ -27,13 +25,13 @@ int main () {
 
         switch(state) {
             case 1:
-
+                add(trains);
                 break;
             case 2:
-
+                change(trains);
                 break;
             case 3:
-
+                remove(trains);
                 break;
             case 4:
                 trains.save_to_db();
@@ -42,8 +40,10 @@ int main () {
                 cout << trains << endl;
                 break;
             case 6:
+                print_by_num(trains);
                 break;
             case 7:
+                print_by_station(trains);
                 break;
             case 8:
                 cout << "Выход" << endl;
@@ -53,7 +53,6 @@ int main () {
                 break;
         }
     }
-
 
     return 0;
 }

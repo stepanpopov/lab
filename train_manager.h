@@ -5,12 +5,14 @@
 #include <istream>
 #include <ostream>
 #include <string>
-#include <pair>
 #include <vector>
 
 struct train_pair {
-    int time;
-    string station;
+    struct {
+        int h;
+        int m;
+    } time;
+    std::string station;
 };
 
 class train_manager {
@@ -27,21 +29,22 @@ public:
 
     void delete_train(int num);
 
-    std::vector<std::pair> get_by_station(std::string station) const;
+    std::vector<std::pair<int, train_pair>> get_by_station(std::string station) const;
 
-    train_pair get_by_num(int num) const;
+    train_pair get_by_num(int num);
 
     friend
     std::ostream &operator<<(std::ostream &out, const train_manager &t);
 
-    // friend
-    // std::istream &operator>>(std::istream &in, train_manager &t);
+    friend
+    std::istream &operator>>(std::istream &in, train_manager &t);
 
 private:
     std::map<int, train_pair> db;
-    string db_filename;
+    std::string db_filename;
 };
 
 std::ostream &operator<<(std::ostream &out, const train_manager &t);
+std::istream &operator>>(std::istream &in, train_manager &t);
 
 #endif //LAB_TRAIN_MANAGER_H
