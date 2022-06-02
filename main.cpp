@@ -27,23 +27,19 @@ int main () {
 
         switch(state) {
             case 1:
-                // string
-                train.add()
+
                 break;
             case 2:
-                print(countries);
-                change(countries);
-                print(countries);
+
                 break;
             case 3:
-                print(countries);
-                remove(countries);
-                print(countries);
+
                 break;
             case 4:
-                save_to_file(countries, FILENAME);
+                trains.save_to_db();
                 break;
             case 5:
+                cout << trains << endl;
                 break;
             case 6:
                 break;

@@ -17,7 +17,11 @@ class train_manager {
 public:
     train_manager(std::string filename);
 
-    void save_to_db(std::string filename) const;
+    ~train_manager() {
+        save_to_db();
+    }
+
+    void save_to_db() const;
 
     void add_train(int num, train_pair pair);
 
@@ -30,11 +34,12 @@ public:
     friend
     std::ostream &operator<<(std::ostream &out, const train_manager &t);
 
-    friend
-    std::istream &operator>>(std::istream &in, train_manager &t);
+    // friend
+    // std::istream &operator>>(std::istream &in, train_manager &t);
 
 private:
     std::map<int, train_pair> db;
+    string db_filename;
 };
 
 std::ostream &operator<<(std::ostream &out, const train_manager &t);

@@ -4,7 +4,7 @@
 #include <ofstream>
 // #include <vector>
 
-train_manager::train_manager(std::string filename) {
+train_manager::train_manager(std::string filename) : db_filename(filename) {
 
     std::ifstream in(filename);
     if (!in) {
@@ -23,12 +23,13 @@ train_manager::train_manager(std::string filename) {
     }
 }
 
-void train_manager::save_to_db(std::string filename) const {
-    std::ofstream out(filename);
+void train_manager::save_to_db() const {
+    std::ofstream out(db_filename);
 
-    for (const auto &it : db) {
-        out << it.first << " " << it.second.time << " " << it.second.station << std::endl;
-    }
+    out << *this;
+    // for (const auto &it : db) {
+       // out << it.first << " " << it.second.time << " " << it.second.station << std::endl;
+    // }
 
     out.close();
     // cout << "Каталог успешно сохранен" << endl << endl;  !!!!
@@ -64,6 +65,6 @@ std::ostream &operator<<(std::ostream &out, const train_manager &t) {
 }
 
 
-std::istream &operator>>(std::istream &in, train_manager &t) {
+/*std::istream &operator>>(std::istream &in, train_manager &t) {
 
-}
+}*/
