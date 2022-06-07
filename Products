@@ -1,0 +1,11 @@
+Products|ProductID
+
+ProductID|Int32|8|UnitPrice|Int32|8|UnitInStock|Int32|8
+
+IU5-21|Ivanov|1
+
+IU5-22|Petrova|2
+
+IU5-23|Sidorov|3
+
+IU5-24|Kuznezhov|4
